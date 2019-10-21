@@ -1,0 +1,21 @@
+apply plugin: 'com.android.application'
+apply from: "../config/base.gradle"
+apply from: '../config/upload-apk.gradle'
+
+android {
+    defaultConfig {
+        applicationId module_applicationId
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def buildName = buildType.name
+            if ("release"==(buildName)) {
+                buildName = ""
+            } else {
+                buildName = "_" + buildName
+            }
+            outputFileName = module_name + "_v" + module_version_name + buildName + ".apk"
+        }
+    }
+}

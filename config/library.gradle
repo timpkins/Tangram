@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply from "base.grdle"
+
+android {
+    defaultConfig {
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = module_name + "_v" + module_version_name + "_${buildType.name}.aar"
+        }
+    }
+}

@@ -1,0 +1,56 @@
+ext {
+    java_compile_version = 1.8
+    android_sdk_version = 29
+    min_sdk_version = 23
+    build_tools_version = '29.0.1'
+}
+
+android {
+    compileSdkVersion android_sdk_version
+    buildToolsVersion build_tools_version
+
+    signingConfigs {
+        tangram {
+            storeFile file('../config/tangram.jks')
+            storePassword 'tangram'
+            keyAlias = 'demo'
+            keyPassword 'tangramdemo'
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion min_sdk_version
+        targetSdkVersion android_sdk_version
+        versionCode module_version_code
+        versionName module_version_name
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.tangram
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.tangram
+        }
+
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.tangram
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = java_compile_version
+        targetCompatibility = java_compile_version
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation androidx_appcompat$appcompat
+    testImplementation junit$junit
+    androidTestImplementation androidx_test$runner
+    androidTestImplementation androidx_test_espresso$espresso_core
+}

@@ -1,0 +1,13 @@
+ext {
+    module_name = 'tangram'
+    module_applicationId = "cn.tims.tangram"
+    run_alone = true
+    module_version_code = 1
+    module_version_name = '1.0.0'
+}
+
+apply from: '../config/application.gradle'
+
+dependencies {
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+}

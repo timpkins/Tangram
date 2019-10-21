@@ -1,0 +1,21 @@
+apply plugin: 'maven'
+
+def MAVEN_REPOSITORY_PATH = 'file:///E:/Workspace/Maven'
+def GROUP_ID = 'cn.timpkins.tangram'
+def ARTIFACT_ID = module_name
+def VERSION_NAME = module_version_name
+def PACKAGE_TYPE = 'aar'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: MAVEN_REPOSITORY_PATH)
+            pom.project {
+                groupId GROUP_ID
+                artifactId ARTIFACT_ID
+                version VERSION_NAME
+                packaging PACKAGE_TYPE
+            }
+        }
+    }
+}

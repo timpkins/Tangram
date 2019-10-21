@@ -1,0 +1,2 @@
+include ':Demo'
+rootProject.name='Tangram'
